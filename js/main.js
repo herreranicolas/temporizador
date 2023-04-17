@@ -19,23 +19,22 @@ form.addEventListener("submit", (e) => {
 
 function comenzarTemporizador() {
   let inputTemporizador = document.getElementById("inputTemporizador").value;
-  inputTemporizador++;
   inputTemporizador = parseInt(inputTemporizador);
   let unidadTiempoTemporizador = document.getElementById(
     "unidadTiempoTemporizador"
   ).value;
   switch (unidadTiempoTemporizador) {
     case "segundos":
-      tiempoRestante = inputTemporizador;
+      tiempoRestante = inputTemporizador + 1;
       break;
     case "minutos":
-      tiempoRestante = inputTemporizador * 60;
+      tiempoRestante = inputTemporizador * 60 + 1;
       break;
     case "horas":
-      tiempoRestante = inputTemporizador * 3600;
+      tiempoRestante = inputTemporizador * 3600 + 1;
       break;
     default:
-      tiempoRestante = inputTemporizador;
+      tiempoRestante = inputTemporizador + 1;
   }
 
   clearInterval(intervaloId);
@@ -54,19 +53,9 @@ function comenzarTemporizador() {
 
 function pausarTemporizador() {
   estaPausado = !estaPausado;
-  let inputTemporizador = document.getElementById("inputTemporizador");
-  let unidadTiempoTemporizador = document.getElementById(
-    "unidadTiempoTemporizador"
-  );
   if (estaPausado) {
-    inputTemporizador.classList.add("d-none");
-    unidadTiempoTemporizador.classList.add("d-none");
-    btnComenzarTemporizador.classList.add("d-none");
     btnPausarTemporizador.innerHTML = `<i class="bi bi-play-circle fs-1"></i>`;
   } else {
-    inputTemporizador.classList.remove("d-none");
-    unidadTiempoTemporizador.classList.remove("d-none");
-    btnComenzarTemporizador.classList.remove("d-none");
     btnPausarTemporizador.innerHTML = `<i class="bi bi-pause-circle fs-1"></i>`;
   }
 }
@@ -76,9 +65,9 @@ function resetearTemporizador() {
   clearInterval(intervaloId);
   mostrarTiempo(tiempoRestante);
   estaPausado = false;
-    if (tiempoRestante <= 0) {
-      btnPausarTemporizador.setAttribute("disabled", "true");
-    }
+  if (tiempoRestante <= 0) {
+    btnPausarTemporizador.setAttribute("disabled", "true");
+  }
 }
 
 function verificarTiempo(tiempo) {
@@ -95,9 +84,20 @@ function mostrarTiempo(tiempo) {
   document.getElementById("temporizador").textContent = `${verificarTiempo(
     horas
   )}:${verificarTiempo(minutos)}:${verificarTiempo(segundos)}`;
-    if (tiempo > 0) {
-      btnPausarTemporizador.removeAttribute("disabled");
-    } else {
-      btnPausarTemporizador.setAttribute("disabled", "true");
-    }
+  let inputTemporizador = document.getElementById("inputTemporizador");
+  let unidadTiempoTemporizador = document.getElementById(
+    "unidadTiempoTemporizador"
+  );
+  if (tiempo > 0) {
+    inputTemporizador.classList.add("d-none");
+    unidadTiempoTemporizador.classList.add("d-none");
+    btnComenzarTemporizador.classList.add("d-none");
+    btnPausarTemporizador.removeAttribute("disabled");
+  } else {
+    inputTemporizador.classList.remove("d-none");
+    unidadTiempoTemporizador.classList.remove("d-none");
+    btnComenzarTemporizador.classList.remove("d-none");
+    btnPausarTemporizador.innerHTML = `<i class="bi bi-pause-circle fs-1"></i>`;
+    btnPausarTemporizador.setAttribute("disabled", "true");
+  }
 }
