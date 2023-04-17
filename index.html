@@ -20,26 +20,26 @@
     <section class="container">
       <h1>Temporizador</h1>
       <h2 class="border border-5 rounded-circle py-5 fs-1 fw-bold" id="temporizador">00:00:00</h2>
-      <form class="mt-3">
+      <form class="mt-3" id="formTemporizador">
         <div class="input-group">
-          <input type="number" class="form-control" id="time-input" placeholder="Ingrese el tiempo" required>
+          <input type="number" class="form-control" id="inputTemporizador" placeholder="Ingrese el tiempo" required>
           <div class="mx-1">
-            <select class="form-select" id="time-units" required>
+            <select class="form-select" id="unidadTiempoTemporizador" required>
               <option value="segundos">segundos</option>
               <option value="minutos">minutos</option>
               <option value="horas">horas</option>
             </select>
           </div>
         </div>
-        <button type="submit" class="btn" id="btnComenzar"><i class="bi bi-play-circle fs-1"></i></button>
+        <button type="submit" class="btn" id="btnComenzarTemporizador"><i class="bi bi-play-circle fs-1"></i></button>
       </form>
     </section>
     <section class="btn-group" role="group">
       <div class="px-2">
-        <button type="button" class="btn" id="btnPausar"><i class="bi bi-pause-circle fs-1"></i></button>
+        <button type="button" class="btn" id="btnPausarTemporizador" disabled><i class="bi bi-pause-circle fs-1"></i></button>
       </div>
       <div class="px-2">
-        <button type="button" class="btn" id="btnResetear"><i class="bi bi-stop-circle fs-1"></i></button>
+        <button type="button" class="btn" id="btnResetearTemporizador"><i class="bi bi-stop-circle fs-1"></i></button>
       </div>
     </section>
   </main>
