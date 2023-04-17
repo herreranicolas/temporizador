@@ -1,0 +1,15 @@
+body {
+  background-color: #00263b;
+  min-height: 100vh;
+  color: #fc7a1e;
+}
+
+.border {
+  border: 0.25rem solid #fc7a1e !important;
+}
+
+.btn {
+  color: #fc7a1e;
+  border: none;
+}
+
